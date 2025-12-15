@@ -34,7 +34,7 @@ jobs:
               CUSTOM_LLVM=false
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           # NOTE:  setting fetch-depth to 0 to retrieve the entire history
           # instead of a shallow-clone so that all tags are fetched as well.
@@ -80,7 +80,7 @@ jobs:
       - name: Generate image attestation
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
 
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v3
         with:
           subject-name: quay.io/mtahhan/${{ matrix.IMAGE_NAME }}
           subject-digest: ${{ steps.build-push-image.outputs.digest }}
